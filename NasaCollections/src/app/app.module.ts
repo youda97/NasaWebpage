@@ -15,7 +15,20 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { FormsModule } from "@angular/forms";
 
 //Material design modules
-import { MatButtonModule } from '@angular/material'
+import { MatButtonModule,
+  MatCheckboxModule,
+  MatCardModule, 
+  MatGridListModule, 
+  MatInputModule, 
+  MatDatepickerModule, 
+  MatNativeDateModule, 
+  MatToolbarModule, 
+  MatProgressSpinnerModule,
+  MatTabsModule,
+  MatListModule,
+  MatIconModule,
+  DateAdapter,
+  MAT_DATE_FORMATS } from '@angular/material'
 
 //Routes
 import {RouterModule, Routes} from '@angular/router';
@@ -25,6 +38,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+
+//service
+import { FirebaseService } from "./services/firebase.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full' },
@@ -51,12 +67,13 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule, FormsModule,
     RouterModule.forRoot(appRoutes),
-    MatButtonModule,
+    MatButtonModule, MatCheckboxModule,MatCardModule,MatGridListModule,MatInputModule,MatDatepickerModule,
+    MatNativeDateModule,MatToolbarModule,MatListModule,MatIconModule,MatTabsModule, MatProgressSpinnerModule, 
     AngularFireModule.initializeApp(environment.firebase, 'nasa-collection-app'), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseService } from "../../services/firebase.service";
 
 @Component({
   selector: 'app-collection',
@@ -7,20 +7,20 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
-  
-  collection: FirebaseListObservable<any[]>;
+  allCollection: any;
 
-  constructor(db: AngularFireDatabase) { 
-    this.collection = db.list('/collection/items');
- 
-    this.collection.forEach((rec)=>{
-      console.log(rec);
-      });
+
+  constructor(private firebaseService: FirebaseService) { 
+
     
   }
 
 
   ngOnInit() {
+
+    this.firebaseService.getImages().subscribe(collection => {
+      this.allCollection = collection;
+    })
   }
 
 }

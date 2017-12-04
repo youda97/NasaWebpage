@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from "../../services/firebase.service";
 
 @Component({
   selector: 'app-home',
@@ -7,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  topTen: any;
+
   collectionTitle = "Nasa Collections";
 
-  clicked(){
-    console.log("h2 clicked!")
-  }
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
+    this.firebaseService.getTopRating().subscribe(top =>{
+      this.topTen = top;
+      console.log(this.topTen);
+    })
   }
 
 }

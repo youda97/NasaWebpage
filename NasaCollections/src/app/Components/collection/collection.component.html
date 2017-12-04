@@ -1,3 +1,4 @@
+
 <ul>
-    <li *ngFor = "let collection of collection | async" > {{collection}} </li>
+    <li *ngFor = "let collection of allCollection "> Image title: {{collection.data[0].title | json }} </li>
 </ul>
