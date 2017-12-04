@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   firebase: {
-       apiKey: "AIzaSyB5VGLToDQ0uvrmUjbVZOFFQBxm3xXjKXA",
+    apiKey: "AIzaSyB5VGLToDQ0uvrmUjbVZOFFQBxm3xXjKXA",
     authDomain: "nasarest-f4f1e.firebaseapp.com",
     databaseURL: "https://nasarest-f4f1e.firebaseio.com",
     projectId: "nasarest-f4f1e",
