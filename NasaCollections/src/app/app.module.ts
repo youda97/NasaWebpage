@@ -15,6 +15,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { FormsModule } from "@angular/forms";
 
 //Material design modules
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { MatButtonModule,
   MatCheckboxModule,
   MatCardModule, 
@@ -64,9 +66,11 @@ const appRoutes: Routes = [
     NavbarComponent,
     FooterComponent
   ],
+  
   imports: [
     BrowserModule, FormsModule,
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,MatCardModule,MatGridListModule,MatInputModule,MatDatepickerModule,
     MatNativeDateModule,MatToolbarModule,MatListModule,MatIconModule,MatTabsModule, MatProgressSpinnerModule, 
     AngularFireModule.initializeApp(environment.firebase, 'nasa-collection-app'), // imports firebase/app needed for everything
