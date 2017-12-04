@@ -45,7 +45,7 @@ import { FirebaseService } from "./services/firebase.service";
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full' },
   {path: 'collection', component: CollectionComponent, pathMatch: 'full' },
-  {path: 'collection/:id', component: CollectionDetailsComponent, pathMatch: 'full' },
+  {path: 'collection-details/:id', component: CollectionDetailsComponent, pathMatch: 'full' },
   {path: 'create-collection', component: CreateCollectionComponent, pathMatch: 'full' },
   {path: 'edit-collection/:id', component: EditCollectionComponent, pathMatch: 'full' },
   {path: 'delete-collection/:id', component: DeleteCollectionComponent, pathMatch: 'full' }

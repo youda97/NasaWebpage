@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class FirebaseService {
   collection: FirebaseListObservable<any[]>; ; //from Firebase
   topTen: Observable<any>
+  collectionDetails: Observable<any>;
 
   constructor(private db: AngularFireDatabase) { }
   
@@ -21,10 +22,16 @@ export class FirebaseService {
       
       this.topTen = this.db.list('/collection/items').map(collection => {
       const topImages = collection.filter(item => item.$key < 10 );
+      console.log(collection.href);
       return topImages;
     })
     return this.topTen;
       
+  }
+  
+    getCollectionDetails(id){
+        this.collectionDetails = this.db.object('/collection/items/' + id) as Observable<any>;
+        return this.collectionDetails;     
   }
 
 }
