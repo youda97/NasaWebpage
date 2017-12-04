@@ -1,3 +1,39 @@
-<p>
-  edit-collection works!
-</p>
+<mat-card>Edit Book</mat-card>
+
+<div class="edit-collection-form">
+    <a [routerLink]="['/colletion']">Back</a>
+    <form #values="ngForm" (submit)="submitEdit()">
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Collection Title" [(ngModel)]="title" name="title"  >
+      </mat-input-container>
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Photographer" [(ngModel)]="photographer" name="photographer" >
+      </mat-input-container>
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Location" [(ngModel)]="location" name="location" >
+      </mat-input-container>
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Center" [(ngModel)]="center" name="center" >
+      </mat-input-container>
+      
+      <mat-input-container class="full-width" >
+          <input matInput [(ngModel)]="date_created" [matDatepicker]="dc" placeholder="Date Created " [ngModelOptions]="{standalone: true}">
+          <mat-datepicker-toggle matSuffix [for]="dc"></mat-datepicker-toggle>
+          
+        </mat-input-container>
+       <mat-datepicker #dc (selectedChanged)="updateDateAdded($event)"></mat-datepicker>
+      
+      
+      <mat-input-container class="full-width">
+          <textarea matInput rows="5" placeholder="Collection Description" [(ngModel)]="description" name="description" ></textarea>
+        </mat-input-container>
+     
+     <mat-input-container class="third-width">
+          <input matInput placeholder="Image Url (enter image URL)" [(ngModel)]="href" name="href" >
+      </mat-input-container>
+      <img src="{{href}}" alt="{{title}}">
+      <hr>
+      <button mat-raised-button value="submit" > Save Changes </button>
+    
+    </form>
+</div>

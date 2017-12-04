@@ -42,12 +42,17 @@ export class FirebaseService {
     return this.collection.push(filteredCollection);
   }
   
-  formatDate(date: Date): string{
+    formatDate(date: Date): string{
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
       
       return '${year}-${month}-${day}';
-  }
+    }
+  
+    updateCollection(id, collectionDetails){
+        var filteredCollection = JSON.parse(JSON.stringify(collectionDetails)); //removes the undefined fields
+        return this.collection.update(id,filteredCollection);
+    }
 
 }
