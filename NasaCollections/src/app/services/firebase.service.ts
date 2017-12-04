@@ -54,5 +54,10 @@ export class FirebaseService {
         var filteredCollection = JSON.parse(JSON.stringify(collectionDetails)); //removes the undefined fields
         return this.collection.update(id,filteredCollection);
     }
+    
+    deleteCollection(id){
+    return this.collection.remove(id);
+    
+  }
 
 }
