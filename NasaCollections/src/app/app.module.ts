@@ -44,6 +44,9 @@ import { environment } from '../environments/environment';
 //service
 import { FirebaseService } from "./services/firebase.service";
 
+//auth 0
+import {AuthService} from  "./services/auth.service";
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full' },
   {path: 'collection', component: CollectionComponent, pathMatch: 'full' },
@@ -77,7 +80,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, AuthService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

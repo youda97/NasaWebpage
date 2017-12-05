@@ -1,4 +1,8 @@
+<div *ngIf="!topTen && authenticated" class="spinner"> 
+    <mat-spinner></mat-spinner>
+</div>
 
+<div *ngIf="authenticated"> 
  <mat-toolbar> My Top 10 Images </mat-toolbar>
  <mat-grid-list cols="1">
      <mat-grid-tile *ngFor="let collection of topTen">
@@ -18,4 +22,13 @@
         </mat-card-actions>
       </mat-card>
      </mat-grid-tile>
- </mat-grid-list>
+    </mat-grid-list>
+</div>
+
+<div *ngIf="!authenticated">
+     <div class="appTitleDiv">
+      <br>
+          <h1 class="appTitle" align="center"> Welcome to the NASA Collection Application </h1>
+      <br>
+  </div>
+</div>
