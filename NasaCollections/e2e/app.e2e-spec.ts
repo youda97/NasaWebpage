@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('nasa-collections App', () => {
+describe('angular-demo1 App', () => {
   let page: AppPage;
 
   beforeEach(() => {

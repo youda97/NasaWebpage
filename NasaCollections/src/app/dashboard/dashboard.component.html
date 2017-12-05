@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<br/>
+ 
+  <li *ngFor = "let photo of photos"> 
+  <div>
+   <p>{{collectionNumber}}</p>
+    <a (click) = "removeFromCollection(photo) "><img src = {{photo}} /></a>
+    <br/>
+    </div>
+ </li>
+ 
+</html>

@@ -1,88 +1,58 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { HomeComponent } from './Components/home/home.component';
-import { CollectionComponent } from './Components/collection/collection.component';
-import { CollectionDetailsComponent } from './Components/collection-details/collection-details.component';
-import { CreateCollectionComponent } from './Components/create-collection/create-collection.component';
-import { EditCollectionComponent } from './Components/edit-collection/edit-collection.component';
-import { DeleteCollectionComponent } from './Components/delete-collection/delete-collection.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { FooterComponent } from './Components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
-
-//Forms
-import { FormsModule } from "@angular/forms";
-
-//Material design modules
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-import { MatButtonModule,
-  MatCheckboxModule,
-  MatCardModule, 
-  MatGridListModule, 
-  MatInputModule, 
-  MatDatepickerModule, 
-  MatNativeDateModule, 
-  MatToolbarModule, 
-  MatProgressSpinnerModule,
-  MatTabsModule,
-  MatListModule,
-  MatIconModule,
-  DateAdapter,
-  MAT_DATE_FORMATS } from '@angular/material'
-
-//Routes
 import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
-//Firebase configuration
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
-
-//service
-import { FirebaseService } from "./services/firebase.service";
+import { NasaApiService } from './nasa-api.service';
+import { CollectionService } from './collection.service';
+import { HttpModule } from '@angular/http';
+import { FlashMessagesModule } from 'ngx-flash-messages';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ValidateService } from './validate.service';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminService } from './admin.service';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full' },
-  {path: 'collection', component: CollectionComponent, pathMatch: 'full' },
-  {path: 'collection-details/:id', component: CollectionDetailsComponent, pathMatch: 'full' },
-  {path: 'create-collection', component: CreateCollectionComponent, pathMatch: 'full' },
-  {path: 'edit-collection/:id', component: EditCollectionComponent, pathMatch: 'full' },
-  {path: 'delete-collection/:id', component: DeleteCollectionComponent, pathMatch: 'full' }
-
-  ]
+  { path: '', component: NotLoggedInComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'profile', component: ProfileComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'policies', component: AdminLoginComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    CollectionComponent,
-    CollectionDetailsComponent,
-    CreateCollectionComponent,
-    EditCollectionComponent,
-    DeleteCollectionComponent,
+    LoginComponent,
+    NotLoggedInComponent,
     NavbarComponent,
-    FooterComponent
+    RegisterComponent,
+    DashboardComponent,
+    ProfileComponent,
+    AdminLoginComponent,
+    AdminComponent
   ],
-  
   imports: [
-    BrowserModule, FormsModule,
-    RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatCardModule,MatGridListModule,MatInputModule,MatDatepickerModule,
-    MatNativeDateModule,MatToolbarModule,MatListModule,MatIconModule,MatTabsModule, MatProgressSpinnerModule, 
-    AngularFireModule.initializeApp(environment.firebase, 'nasa-collection-app'), // imports firebase/app needed for everything
-    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    FlashMessagesModule,
     HttpModule
   ],
-  providers: [FirebaseService],
+  providers: [AuthService, ValidateService, AdminService, CollectionService, NasaApiService],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }
