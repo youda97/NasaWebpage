@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {Observable } from 'rxjs/Observable';
+import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class FirebaseService {
+    
+    private NASAquery = "https://images-api.nasa.gov/search?q="; //search query from nasa api
+
   collection: FirebaseListObservable<any[]>; ; //from Firebase
   topTen: Observable<any>
   collectionDetails: Observable<any>;
 
-  constructor(private db: AngularFireDatabase) { 
+  constructor(private db: AngularFireDatabase, private _http: Http) { 
       this.collection = db.list('/collection/items');
   }
+  
+  getValues(query){
+    //console.log(index);
+    return this._http.get(this.NASAquery + query) //append user query
+    .map((data: any) => data.json()); //.collection.items["0"].links["0"].href);
+}
   
   getImages(){
         this.collection = this.db.list('/collection/items')as FirebaseListObservable<any[]>;

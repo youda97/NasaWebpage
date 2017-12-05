@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from 'firebase/app';
 import { Observable } from "rxjs/Observable";
-import {AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +14,7 @@ export class NavbarComponent implements OnInit {
   user: Observable<firebase.User>;
   authenticated: boolean = false;
   
-  constructor( public af: AngularFireAuth, private as: AuthService) { 
+  constructor( public af: AngularFireAuth) { 
     this.af.authState.subscribe(
       (auth) => {
         
@@ -30,8 +29,8 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    //this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    this.as.login();
+    this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
     this.authenticated = true;
     
   }

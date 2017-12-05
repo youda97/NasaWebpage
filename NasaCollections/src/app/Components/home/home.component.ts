@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.firebaseService.getTopRating().subscribe(top =>{
       this.topTen = top;
-      console.log(this.topTen);
+      //console.log(this.topTen);
     })
   }
 

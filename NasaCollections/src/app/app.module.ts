@@ -10,6 +10,8 @@ import { EditCollectionComponent } from './Components/edit-collection/edit-colle
 import { DeleteCollectionComponent } from './Components/delete-collection/delete-collection.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 //Forms
 import { FormsModule } from "@angular/forms";
@@ -44,9 +46,6 @@ import { environment } from '../environments/environment';
 //service
 import { FirebaseService } from "./services/firebase.service";
 
-//auth 0
-import {AuthService} from  "./services/auth.service";
-
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full' },
   {path: 'collection', component: CollectionComponent, pathMatch: 'full' },
@@ -79,8 +78,10 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'nasa-collection-app'), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    HttpClientModule,
+    HttpModule
   ],
-  providers: [FirebaseService, AuthService],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 

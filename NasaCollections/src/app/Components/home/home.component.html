@@ -1,4 +1,4 @@
-<div *ngIf="!topTen && authenticated" class="spinner"> 
+<div *ngIf="topTen && !authenticated" class="spinner"> 
     <mat-spinner></mat-spinner>
 </div>
 
@@ -29,6 +29,11 @@
      <div class="appTitleDiv">
       <br>
           <h1 class="appTitle" align="center"> Welcome to the NASA Collection Application </h1>
+           <br>
+          <h2  align="center"> About </h2>
+         
+          <p  align="center"> A web application for displaying images from NASA with the ability to search based on a given phrase, create image collections and share them with others.
+</p>
       <br>
   </div>
 </div>
