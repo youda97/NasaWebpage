@@ -110,7 +110,7 @@ export class AuthService {
             sec: secure,
         }
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/upDateSec', email, sec, {headers: headers})
+        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/upDateSec', user, {headers: headers})
             .map(res => res.json());
     }
     
