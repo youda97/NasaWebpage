@@ -18,11 +18,25 @@ export class AdminLoginComponent implements OnInit {
             private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-    // security = this.authService.getSecurity();
-    // policies = this.authService.getPrivacy();
-    // dmca = this.authService.getDMCA();
+    this.authService.getSecurity().subscribe(
+                  res => {
+                    console.log("VALUES UPDATING");
+                    console.log(res);
+                    this.security = res.user.sec;
+                  });
+                  
+    this.authService.getPrivacy().subscribe(
+                  res => {
+                    console.log("VALUES UPDATING");
+                    console.log(res);
+                    this.privacy = res.user.pri;
+                  });
+                  
+    this.authService.getDMCA().subscribe(
+                  res => {
+                    console.log("VALUES UPDATING");
+                    console.log(res);
+                    this.dmca = res.user.theDMCA;
+                  });
   }
-  
-  
-
 }

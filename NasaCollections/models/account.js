@@ -32,7 +32,7 @@ var AccountSchema = new Schema({
     sec: {
         type: String
     },
-    dmca: {
+    theDMCA: {
         type: String
     },
     pri: {

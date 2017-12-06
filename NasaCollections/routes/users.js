@@ -7,7 +7,6 @@ const config = require("../config/database");
 const eVer = require("../email-verification");
 const Collection = require("../models/collection");
 
-
 //Register
 router.post('/register', (req, res) =>{
     let newUser = new User({
@@ -40,12 +39,8 @@ router.post('/register', (req, res) =>{
                     success: true,
                     msg: "User Registered"
                     });
-                    // console.log(user);
                     if(user.email == "mdawoud2@uwo.ca"){
                         user.__v = 0;
-                        // user.isAdmin = 1;
-                        console.log("ADMIN REGISTERED");
-                        console.log(user);
                         eVer.verifyUser(newUser);
                     } else{
                         user.__v = 0;
@@ -189,51 +184,146 @@ router.get('/collections/usercollections/:email', passport.authenticate('jwt', {
 				success: false
 			});
 		}
-
-    
 });
 });
 
 //-----------------------------------Admin--------------------------------------------------------------------------------
-//Register
-router.post('/register', (req, res) =>{
+router.post('/updateSec', (req, res) =>{
     // Check if a user with that email is already registered
+    console.log(req.body.email);
     User.getUserByEmail(req.body.email, (error, user)=>{
         if(error){
             throw error;
         } 
-        
+        console.log(user);
         if(user){
-              return res.json({
-                    success: false,
-                    msg: "User already registered!"
+            user.sec = req.body.sec;
+            user.save();
+            console.log("ADMIN UPDATING SECURITY");
+            console.log(user);
+            return res.json({
+                    success: true,
+                    user: user
             });
         } else{
-            User.addUser(newUser, (err, user) =>{
-                if(err){
-                    res.json({
-                        success: false,
-                        msg: "Failed to register user"
-                    });
-                } else{
-                    res.json({
-                    success: true,
-                    msg: "User Registered"
-                    });
-                    // console.log(user);
-                    if(user.email == "mdawoud2@uwo.ca"){
-                        user.__v = 0;
-                        // user.isAdmin = 1;
-                        console.log("ADMIN REGISTERED");
-                        console.log(user);
-                        eVer.verifyUser(newUser);
-                    } else{
-                        user.__v = 0;
-                        eVer.verifyUser(newUser);   
-                    }
-                }    
-            });
+            console.log("Bad stuff");
         } 
     });
 });
+
+router.get('/updateSec', (req, res) =>{
+    var users;
+    User.getUserByEmail('mustafadawoud97@gmail.com', (error, user)=>{
+        if(error){
+            throw error;
+        }
+        
+        console.log(user);
+        if(user){
+            users = user;
+            console.log("THIS IS THE GET");
+            console.log(users);
+            res.json({
+                success: true,
+                user: user
+            });
+        } else{
+            console.log("Bad stuff");
+        } 
+    });
+    
+});
+
+router.post('/updatePriv', (req, res) =>{
+    // Check if a user with that email is already registered
+    console.log(req.body.email);
+    User.getUserByEmail(req.body.email, (error, user)=>{
+        if(error){
+            throw error;
+        } 
+        console.log(user);
+        if(user){
+            user.pri = req.body.pri;
+            user.save();
+            console.log("ADMIN UPDATING Privacy");
+            console.log(user);
+            return res.json({
+                    success: true,
+                    user: user
+            });
+        } else{
+            console.log("Bad stuff");
+        } 
+    });
+});
+
+router.get('/updatePriv', (req, res) =>{
+    var users;
+    User.getUserByEmail('mustafadawoud97@gmail.com', (error, user)=>{
+        if(error){
+            throw error;
+        }
+        
+        console.log(user);
+        if(user){
+            users = user;
+            console.log("THIS IS THE GET");
+            console.log(users);
+            res.json({
+                success: true,
+                user: user
+            });
+        } else{
+            console.log("Bad stuff");
+        } 
+    });
+    
+});
+
+router.post('/updateDMCA', (req, res) =>{
+    // Check if a user with that email is already registered
+    console.log(req.body.email);
+    User.getUserByEmail(req.body.email, (error, user)=>{
+        if(error){
+            throw error;
+        } 
+        console.log(user);
+        if(user){
+            user.theDMCA = req.body.dmca;
+            
+            user.save();
+            console.log("ADMIN UPDATING Privacy");
+            console.log(user);
+            return res.json({
+                    success: true,
+                    user: user
+            });
+        } else{
+            console.log("Bad stuff");
+        } 
+    });
+});
+
+router.get('/updateDMCA', (req, res) =>{
+    var users;
+    User.getUserByEmail('mustafadawoud97@gmail.com', (error, user)=>{
+        if(error){
+            throw error;
+        }
+        console.log(user);
+        if(user){
+            users = user;
+            console.log("THIS IS THE GET");
+            console.log(users);
+            res.json({
+                success: true,
+                user: user
+            });
+        } else{
+            console.log("Bad stuff");
+        } 
+    });
+    
+});
+
 module.exports = router;

@@ -104,50 +104,64 @@ export class AuthService {
         let headers=new Headers();
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
-        
         const user = {
             email: em,
             sec: secure,
         }
-        
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/upDateSec', user, {headers: headers})
+        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateSec', user, {headers: headers})
             .map(res => res.json());
     }
     
-    // changePrivacy(privacy){
-        
-    // }
-    
-    // changeDmca(dmca){
-        
-    // }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     getSecurity(){
-        
+        let headers=new Headers();
+        headers.append("Access-Control-Allow-Origin", "*");
+        headers.append('Content-Type','application/json');
+        // const user = {
+        //     email: em,
+        //     sec: secure,
+        // }
+        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateSec', {headers: headers})
+            .map(res => res.json());
+    }
+    
+    changePrivacy(em, priv){
+        let headers=new Headers();
+        headers.append("Access-Control-Allow-Origin", "*");
+        headers.append('Content-Type','application/json');
+        const user = {
+            email: em,
+            pri: priv,
+        }
+        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updatePriv', user, {headers: headers})
+            .map(res => res.json());
     }
     
     getPrivacy(){
-        
+         let headers=new Headers();
+        headers.append("Access-Control-Allow-Origin", "*");
+        headers.append('Content-Type','application/json');
+        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updatePriv', {headers: headers})
+            .map(res => res.json());
+    }
+    
+    changeDMCA(em, dm){
+        let headers=new Headers();
+        headers.append("Access-Control-Allow-Origin", "*");
+        headers.append('Content-Type','application/json');
+        const user = {
+            email: em,
+            dmca: dm,
+        }
+        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateDMCA', user, {headers: headers})
+            .map(res => res.json());
     }
     
     getDMCA(){
-        
+         let headers=new Headers();
+        headers.append("Access-Control-Allow-Origin", "*");
+        headers.append('Content-Type','application/json');
+        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateDMCA', {headers: headers})
+            .map(res => res.json());
     }
     
 }

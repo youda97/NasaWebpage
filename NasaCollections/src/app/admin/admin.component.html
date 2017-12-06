@@ -1,18 +1,22 @@
 <div class = "jumbotron text-center">
+    
     <h1>Administrator Settings</h1>
+    
+    <br>
+    
     <p class = "lead">Security policy</p>
     <input [(ngModel)] = "security" type="text" class = "form-control" />
+    <input type="submit" (click) = "onSaveSecurity()" class = "btn btn-primary" value="Save"/>
     
-    <br/><br/>
-    <p> {{security}} </p>
-    <br/><br/>
+    <br><br>
     
     <p class = "lead">Privacy policy</p>
     <input [(ngModel)] = "privacy" type="text" class = "form-control"/>
-    <p class = "lead">DMCA policy</p>
-    <input [(ngModel)] = "dmca" type="text" class = "form-control"/>
-    <br>
-    <input type="submit" (click) = "onSave()" class = "btn btn-primary" value="Save"/>
+    <input type="submit" (click) = "onSavePolicies()" class = "btn btn-primary" value="Save"/>
+    <br><br>
+    
+    <p class = "lead">Enter Takedown DMCA Policy Here</p>
+    <input [(ngModel)] = "DMCA" type="text" class = "form-control"/> 
+    <input type="submit" (click) = "onSaveDMCA()" class = "btn btn-primary" value="Save"/>
 
 </div>
-<p class = "lead">Takedown Instructions</p>

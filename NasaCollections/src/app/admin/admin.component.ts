@@ -8,26 +8,59 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  security:String;
+  security: String;
   privacy:String;
-  dmca:String;
+  DMCA:String;
 
   constructor(private admin: AdminService,
-              private authService: AuthService ) {}
-
+              private authService: AuthService ) { }
+  
   ngOnInit() {
-    this.security = "LOL";
+    this.authService.getSecurity().subscribe(
+                  res => {
+                    console.log("VALUES UPDATING");
+                    console.log(res);
+                    this.security = res.user.sec;
+                  });
+    this.authService.getPrivacy().subscribe(
+                  res => {
+                    console.log("VALUES UPDATING");
+                    console.log(res);
+                    this.privacy = res.user.pri;
+                  });
+                  
+    this.authService.getDMCA().subscribe(
+                  res => {
+                    console.log("VALUES UPDATING");
+                    console.log(res);
+                    this.DMCA = res.user.theDMCA;
+                  });
+    
   }
   
-  onSave(){
+  onSaveSecurity(){
     var thing = this.authService.returnEmail();
     var splitter = thing.split('"email":"');
     var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
     
-    this.authService.changeSecurity(userEmail[0], this.security);
-    // this.authService.changePrivacy(userEmail[0], this.privacy);
-    // this.authService.changeDmca(userEmail[0], this.dmca);
+    this.authService.changeSecurity("mustafadawoud97@gmail.com", this.security).subscribe(
+      res =>{
+        this.security = res.user.sec;
+      });
+  }
+  
+  onSavePolicies(){
+    this.authService.changePrivacy("mustafadawoud97@gmail.com", this.privacy).subscribe(
+      res =>{
+        this.privacy = res.user.pri;
+      });
+  }
+  
+  onSaveDMCA(){
+      this.authService.changeDMCA("mustafadawoud97@gmail.com", this.DMCA).subscribe(
+      res =>{
+        this.DMCA = res.user.theDMCA;
+      });
   }
 
 }
