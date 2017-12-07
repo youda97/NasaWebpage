@@ -49,7 +49,7 @@ module.exports.confirmToken = function(tokenData, callback) {
 				if (err || !user) {
 					return callback(new Error('User does not exist'));
 				}
-				if(user.email == "mustafadawoud97@gmail.com"){
+				if(user.email == "oudayousef3@gmail.com"){
 					user.__v = 2;
 					user.save(callback);
 				} else{

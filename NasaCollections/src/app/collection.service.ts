@@ -6,7 +6,7 @@ import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
 export class CollectionService {
-private databaseURL = "https://se3316lab05-mustafadawoud97.c9users.io:8081/users";
+private databaseURL = "https://youda-lab5-youda97.c9users.io:8081/users";
  
   constructor(private http:Http) { }
 

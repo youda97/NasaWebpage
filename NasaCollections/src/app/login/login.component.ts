@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   
   onLoginSubmit(){
     
-   // if(this.email == "mustafadawoud97@gmail.com" && this.password == "ok"){
+   // if(this.email == "ouda.yousef@gmail.com" && this.password == "ok"){
       // this.flashMessage.show('Signed in as Admin', {
       //       classes: ['alert', 'alert-success'] });
       //      this.admin.changeMessage(true);

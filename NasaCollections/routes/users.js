@@ -39,7 +39,7 @@ router.post('/register', (req, res) =>{
                     success: true,
                     msg: "User Registered"
                     });
-                    if(user.email == "mdawoud2@uwo.ca"){
+                    if(user.email == "youda@uwo.ca"){
                         user.__v = 0;
                         eVer.verifyUser(newUser);
                     } else{
@@ -265,7 +265,7 @@ router.post('/updateSec', (req, res) =>{
 
 router.get('/updateSec', (req, res) =>{
     var users;
-    User.getUserByEmail('mustafadawoud97@gmail.com', (error, user)=>{
+    User.getUserByEmail('oudayousef3@gmail.com', (error, user)=>{
         if(error){
             throw error;
         }
@@ -311,7 +311,7 @@ router.post('/updatePriv', (req, res) =>{
 
 router.get('/updatePriv', (req, res) =>{
     var users;
-    User.getUserByEmail('mustafadawoud97@gmail.com', (error, user)=>{
+    User.getUserByEmail('oudayousef3@gmail.com', (error, user)=>{
         if(error){
             throw error;
         }
@@ -358,7 +358,7 @@ router.post('/updateDMCA', (req, res) =>{
 
 router.get('/updateDMCA', (req, res) =>{
     var users;
-    User.getUserByEmail('mustafadawoud97@gmail.com', (error, user)=>{
+    User.getUserByEmail('oudayousef3@gmail.com', (error, user)=>{
         if(error){
             throw error;
         }

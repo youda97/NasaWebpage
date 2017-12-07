@@ -27,7 +27,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/register', user, {headers: headers})
+        return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/register', user, {headers: headers})
             .map(res => res.json());
         // return this.http.post('users/register', user, {headers: headers})
         //     .map(res => res.json());
@@ -39,7 +39,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/authenticate ', user, {headers: headers})
+        return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/authenticate ', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -48,7 +48,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/re-verification-email ', user, {headers: headers})
+        return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/re-verification-email ', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -72,7 +72,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/profile ', {headers: headers})
+        return this.http.get('https://youda-lab5-youda97.c9users.io:8081/users/profile ', {headers: headers})
             .map(res => res.json());
     }
     
@@ -115,7 +115,7 @@ export class AuthService {
             email: em,
             sec: secure,
         }
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateSec', user, {headers: headers})
+        return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/updateSec', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -123,7 +123,7 @@ export class AuthService {
         let headers=new Headers();
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
-       return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateSec', {headers: headers})
+       return this.http.get('https://youda-lab5-youda97.c9users.io:8081/users/updateSec', {headers: headers})
             .map(res => res.json());
     }
     
@@ -135,7 +135,7 @@ export class AuthService {
             email: em,
             pri: priv,
         }
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updatePriv', user, {headers: headers})
+        return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/updatePriv', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -143,7 +143,7 @@ export class AuthService {
          let headers=new Headers();
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
-        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updatePriv', {headers: headers})
+        return this.http.get('https://youda-lab5-youda97.c9users.io:8081/users/updatePriv', {headers: headers})
             .map(res => res.json());
     }
     
@@ -155,7 +155,7 @@ export class AuthService {
             email: em,
             dmca: dm,
         }
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateDMCA', user, {headers: headers})
+        return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/updateDMCA', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -163,7 +163,7 @@ export class AuthService {
          let headers=new Headers();
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
-        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateDMCA', {headers: headers})
+        return this.http.get('https://youda-lab5-youda97.c9users.io:8081/users/updateDMCA', {headers: headers})
             .map(res => res.json());
     }
     

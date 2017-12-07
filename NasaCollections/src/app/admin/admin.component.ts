@@ -43,21 +43,20 @@ export class AdminComponent implements OnInit {
     var splitter = thing.split('"email":"');
     var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
     
-    this.authService.changeSecurity("mustafadawoud97@gmail.com", this.security).subscribe(
+    this.authService.changeSecurity("oudayousef3@gmail.com", this.security).subscribe(
       res =>{
         this.security = res.user.sec;
       });
   }
   
   onSavePolicies(){
-    this.authService.changePrivacy("mustafadawoud97@gmail.com", this.privacy).subscribe(
+    this.authService.changePrivacy("oudayousef3@gmail.com", this.privacy).subscribe(
       res =>{
         this.privacy = res.user.pri;
       });
   }
-  
   onSaveDMCA(){
-      this.authService.changeDMCA("mustafadawoud97@gmail.com", this.DMCA).subscribe(
+      this.authService.changeDMCA("oudayousef3@gmail.com", this.DMCA).subscribe(
       res =>{
         this.DMCA = res.user.theDMCA;
       });

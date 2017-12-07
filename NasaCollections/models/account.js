@@ -83,21 +83,21 @@ var transport = nodemailer.createTransport({
     auth: {
         // xoauth2: xoauth2.createXOAuth2Generator({
             type: 'OAuth2',
-            user: 'mustafadawoud97@gmail.com',
-            clientId: '896367050609-blv61ak8b60v8kue9opa0n3ap7m07c07.apps.googleusercontent.com',
-            clientSecret: 'eEqRgC0mR5V0xv-O9mylB0RF',
-            refreshToken: '1/2qJemfnnH0CuyPX9T97Gm4pAhWOxMsy7GDEBLu4MzUI'
+            user: 'oudayousef3@gmail.com',
+            clientId: '248775388600-v84ujnknbte9h4br4b2qbbvc51tut62t.apps.googleusercontent.com',
+            clientSecret: 't0Jc7tS63s7f_bVUpfQNINYl',
+            refreshToken: '1/RL_otpK4BK_vZ7QGvJgxuuTst9w3nFG-5F1V_GFzow2ZquJ3j2LPHwKiJpxEdozz'
         // }) 
     }
 });
 
 module.exports.sendEmail = function(user, verificationTokenData){
-    var verificationUrl = "https://se3316lab05-mustafadawoud97.c9users.io:8081/users/verify/" + verificationTokenData;
+    var verificationUrl = "https://youda-lab5-youda97.c9users.io:8081/users/verify/" + verificationTokenData;
     var emailBody = '<p>Hey, <br/>Verify your email by clicking the following link: <a href="' + 
         verificationUrl + '" target="_blank"> Click me</a></p>';
     
     var mailOptions = {
-        from: 'Mustafa <mustafadawoud97@gmail.com>',
+        from: 'Yousef <oudayousef3@gmail.com>',
         to: user.email,
         subject: 'Nasa PCollections',
         html: emailBody
