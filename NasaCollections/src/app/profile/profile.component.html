@@ -1,7 +1,14 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<table>
+<tr><td>
 <form (submit)="onCollectionSubmit()">
-    <div class="form-control">
+    <div class="form-control" class="w3-container">
         <input type="text" [(ngModel)]="searchPhoto" name= "searchPhoto" class = "form-control" placeholder = "Search">
         <br/>
+         <button (click) = search() >Search</button>
+         <br/>
         <p>Title: </p>
         <input type = "text" [(ngModel)]="collectionTitle"  name= "collectionTitle" placeholder="Title" class = "form-control">
         <br/>
@@ -14,20 +21,42 @@
             <br/>
             <br/>
             <input type="submit" class="btn btn-primary" value="Submit">
+            <br>
+
         </div>
-       
+     
         <br/>
+          <br>
+
 </form>
- <button (click) = search() >Search</button>
+
+
+ </td></tr>
+ </table>
+ 
+
 <div class = "row">
 <ul>
+
 <li *ngFor = "let photo of photos" class = image-container>
 <!--<a (click) = "addToCollection(photo) "><img src = "{{photo.links[0]['href']}}"></a>-->
 
-<img  (click)="fullClick(photo.links[0]['href'])" src = "{{photo.links[0]['href']}}">
-<button (click) = "addToCollection(photo) ">!ADD TO COLLECTIONS!</button>
 
-<p>{{photo.data[0]['title']}}</p>
+<table>
+<tr><td>
+    
+    <h2>{{photo.data[0]['title']}}</h2>
+<img  (click)="fullClick(photo.links[0]['href'])" src = "{{photo.links[0]['href']}}">
+</td></tr>
+<tr><td>
+    <br/>
+<button (click) = "addToCollection(photo) ">Add to your collections</button>
+<br/>
+</td></tr>
+</table>
+
+
+
 </li>
 </ul>
 </div>
