@@ -15,6 +15,12 @@ export class AuthService {
          private flashMessageService: FlashMessagesService,
           private router: Router) {   }
           
+    getTheEmail(){
+         var thing = (this.returnEmail());
+    var splitter = thing.split('"email":"');
+    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
+    return userEmail[0];
+    }
     
     register(user){
         let headers=new Headers();
@@ -23,7 +29,8 @@ export class AuthService {
         
         return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/register', user, {headers: headers})
             .map(res => res.json());
-        // return req;
+        // return this.http.post('users/register', user, {headers: headers})
+        //     .map(res => res.json());
     
     }
     
@@ -116,11 +123,7 @@ export class AuthService {
         let headers=new Headers();
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
-        // const user = {
-        //     email: em,
-        //     sec: secure,
-        // }
-        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateSec', {headers: headers})
+       return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/updateSec', {headers: headers})
             .map(res => res.json());
     }
     

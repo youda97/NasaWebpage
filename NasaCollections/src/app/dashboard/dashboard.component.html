@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
-<br/>
- 
-  <li *ngFor = "let photo of photos"> 
-  <div>
-   <p>{{collectionNumber}}</p>
+ <div>
+  <h2>Top 10 Public Collections</h2>
+  <div *ngFor = "let cb of collectionButton">
+   <input (click) = "showCollection(cb.i)" type="button" [(ngModel)] = "cb.value"/> 
+   <input *ngIf = "!(cb.email == authService.getTheEmail())" (click) = "upVote(cb.i)" type = "button" [(ngModel)] = "cb.rating"/>
+   <br/> <br/>
+  </div>
+  
+  <li *ngFor = "let photo of publicPhotos"> 
     <a (click) = "removeFromCollection(photo) "><img src = {{photo}} /></a>
+    
     <br/>
-    </div>
+    
  </li>
+ </div>
+ 
+ <br><br>
+ 
+  <div *ngIf = "authService.loggedIn()">
+   <h2>My Collections</h2>
+   
+   <div *ngFor = "let cb of myCollectionButton">
+   <input (click) = "showMyCollection(cb.i)" type="button" [(ngModel)] = "cb.value"/>
+   <br/> <br/>
+  </div>
+   
+  <li *ngFor = "let photo of photos"> 
+    <a><img src = {{photo}} /></a>
+    <br/>
+ </li>
+ </div>
  
 </html>

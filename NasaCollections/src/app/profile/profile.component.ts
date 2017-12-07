@@ -20,8 +20,7 @@ collectionDescrip: String;
 isPublic: Boolean = false;
 imageList: String;
 count:number;
-//searchPhoto = "";
-//userStatus = "";
+
 photos: any [];
 image: any [];
   constructor(private authService: AuthService, 
@@ -98,8 +97,11 @@ addToCollection(photo){
   console.log(photo.links[0].href);
     this.image[this.count]=photo.links[0].href;
     this.count++;
-    //console.log(this.image);
+}
+
+fullClick(href){
   
 }
+
 ngOnInit() {}
 }

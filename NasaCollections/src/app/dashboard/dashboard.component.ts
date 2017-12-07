@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {CollectionService} from "../collection.service";
 import {AuthService} from "../auth.service";
 
-// import {Http} from '@angular/http';
-// //import { DataService } from '../data.service';
-// import {Router} from '@angular/router';
-// import { NasaApiService } from '../../services/nasa-api.service';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -20,63 +15,143 @@ export class DashboardComponent implements OnInit {
   image: any[];
   count: number;
   
+  publicCollection: any;
+  publicPhotos: any[];
+  collectionButton: any[];
+  myCollectionButton: any[];
+  
   public isReady = false; // Used to make the image request wait on other things
   
   constructor(private authService: AuthService,
               private cService: CollectionService) {
                 this.photos = [];
+                this.publicPhotos = [];
+                this.collectionButton = [];
+                this.myCollectionButton = [];
               }
   
+  showCollection(n){
+    this.publicPhotos = [];
+    this.cService.getTopTen().subscribe(
+      res =>{
+        var cn = res.collection[JSON.stringify(n)];
+        var pos = 0;
+        var i = 0;
+        
+        while (i < cn.imageList.length ){
+            this.publicPhotos[i] = cn.imageList[JSON.stringify(pos++)];
+            console.log(this.publicPhotos[i]);
+            i++;
+        }
+      });
+  }
+  
   ngOnInit() {
-    this.collectionNumber = "Collection ";
     var thing = (this.authService.returnEmail());
     var splitter = thing.split('"email":"');
     var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
-    console.log(userEmail[0]);
+    
+    //Top ten collections
+    this.cService.getTopTen().subscribe(
+      res =>{
+        this.publicCollection = res;
+        
+        var g = res.collection.length;
+        var k = 0;
+        // this.collectionButton = [{value: "Collection" + (k+1)}];
+        while(k < g){
+          var cn = res.collection[JSON.stringify(k)];
+          this.collectionButton.push({value: cn.title, i: k, rating: cn.rating, isClicked: 0, email: cn.email});
+          k++;
+        }
+      });
+    
+    //If logged in
+    var thing = (this.authService.returnEmail());
+    var splitter = thing.split('"email":"');
+    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
+    
     this.cService.getUserCollections(userEmail[0]).subscribe(
-      (res: any) => {
+      res => {
         var j = res.collection.length;
         var n = 0;
-        var i = 0;
+        var d = 0;
         
-        while( n < j){
-          console.log(res.collection[JSON.stringify(n)]);
-          var cn = res.collection[JSON.stringify(n)];
-          console.log(cn);
-          console.log(n);
-          var pos = 0;
-          var constI = i;
-          this.collectionNumber = this.collectionNumber + JSON.stringify(n+1); 
-          while (i < constI + cn.imageList.length ){
-            this.photos[i] = cn.imageList[JSON.stringify(pos++)];
-            console.log(this.photos[i]);
-            i++;
-        }
-        this.collectionNumber = "Collection ";
-          n++;
-        }
+        while( d < j){
+        var cn = res.collection[JSON.stringify(d)];
         
-      
+        this.myCollectionButton.push({value: cn.title, i: d});
+        d++;
+        }
       });
   
     this.isReady = true;
   }
   
-  test(){
-        // console.log(this.happy);
+  showMyCollection(n){
+    this.photos = [];
+    var thing = (this.authService.returnEmail());
+    var splitter = thing.split('"email":"');
+    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
+    console.log(userEmail[0]);
+    
+    this.cService.getUserCollections(userEmail[0]).subscribe(
+      res => {
+        var i = 0;
+        var cn = res.collection[JSON.stringify(n)];
+        var pos = 0;
+        
+        this.collectionNumber = this.collectionNumber + JSON.stringify(n+1); 
+        while (i < cn.imageList.length ){
+          this.photos[i] = cn.imageList[JSON.stringify(pos++)];
+          i++;
+        }
+      });
   }
   
-  removeFromCollection(photo){
-    /*console.log("1");
-    console.log(photo);
-    console.log(this.photos)
-    this.photos[this.count]= []
-    this.count++;
-    console.log(this.photos)*/
-  }
-  
-  
-  upVote(collection){
-  collection.rating++;
+  upVote(n){
+    // var user;
+    if(this.collectionButton[n].isClicked == 1){
+      
+      console.log("asjfhksjdfhjsdhfjksdfhjsdhfj");
+      this.collectionButton[n].isClicked = 0;
+      
+      this.cService.getTopTen().subscribe(
+      res => {
+        // user = res;
+        var cn = res.collection[JSON.stringify(n)];
+        this.cService.downVote(cn.email, cn._id).subscribe(
+          res => {
+            if(res.success){
+              console.log(res.cln.rating);
+            } else{
+              console.log("FAILUEEEEEEEEEEEEEE");
+            }
+          });
+      });
+    this.collectionButton[n].rating = this.collectionButton[n].rating - 1;
+    } 
+    
+    else{
+      console.log("FDDD");
+      this.collectionButton[n].isClicked = 1;
+      
+      this.cService.getTopTen().subscribe(
+      res => {
+        // user = res;
+        var cn = res.collection[JSON.stringify(n)];
+        this.cService.upVote(cn.email, cn._id).subscribe(
+          res => {
+            if(res.success){
+              console.log(res.cln.rating);
+            } else{
+              console.log("FAILUEEEEEEEEEEEEEE");
+            }
+          });
+      });
+    this.collectionButton[n].rating = this.collectionButton[n].rating + 1;
+    }
+    
+    
   }
 }

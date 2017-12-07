@@ -142,21 +142,21 @@ router.post('/collection',(req,res,next)=>{
 	});
     
 		
-		console.log('New collection from user with email '+newCollection.email);
-			Collection.addCollection(newCollection, (err, user)=>{
-				if(err){
-					res.json({
-						success: false,
-						message: 'Failed to create collection'
-					});
-				}
-				else{
-					res.json({
-						success: true,
-						message: 'Collection successfully created'
-					});
-				}
-			});
+	console.log('New collection from user with email '+newCollection.email);
+		Collection.addCollection(newCollection, (err, user)=>{
+			if(err){
+				res.json({
+					success: false,
+					message: 'Failed to create collection'
+				});
+			}
+			else{
+				res.json({
+					success: true,
+					message: 'Collection successfully created'
+				});
+			}
+		});
 
 });
 
@@ -171,12 +171,9 @@ router.get('/collections/usercollections/:email', passport.authenticate('jwt', {
 
 	Collection.getCollectionByEmail(newCollection.email, (error, cn)=>{
 		if(error){
-			console.log("erooooooooooooooooooooooooooooooooooooooooooooooooooooooooooor");
 			throw error;
 		} 
 
-		// console.log('looking for collections from '+newCollection.email);
-		// // email not found
 		if(cn){
 			res.json({collection: cn});
 		} else {
@@ -185,6 +182,61 @@ router.get('/collections/usercollections/:email', passport.authenticate('jwt', {
 			});
 		}
 });
+});
+
+//Get a users collection 
+router.get('/collections/topTen', (req,res,next)=>{
+	Collection.find({isPublic: 1}).sort({rating: -1}).limit(10).exec(function(err, cn) {
+	   if(err){
+	       console.log("I LOVE JAGATH");
+	       res.json({
+	           success: false,
+	           msg: "NOTHING FOUND"
+	       })
+	   } else if(cn) {
+	       console.log("SUCCESS");
+	       res.json({
+	           success: true,
+	           collection: cn
+	       })
+	   }
+	});
+});
+
+router.post('/collections/upVote', (req,res,next)=>{
+	Collection.findById(req.body.cID, (err, cn) =>{
+	   if(err){
+	       res.json({
+	           success: false
+	       });
+	   } else if(cn){
+	       cn.rating++;
+	       cn.save();
+	       res.json({
+	           success: true,
+	           cln: cn
+	       });
+	   }
+	});
+});
+
+router.post('/collections/downVote', (req,res,next)=>{
+	Collection.findById(req.body.cID, (err, cn) =>{
+	   if(err){
+	       console.log("LLLLLLLLLLLLLLLLLLLLLLLLl");
+	       res.json({
+	           success: false
+	       });
+	   } else if(cn){
+	       console.log("HIIIIIII");
+	       cn.rating--;
+	       cn.save();
+	       res.json({
+	           success: true,
+	           cln: cn
+	       });
+	   }
+	});
 });
 
 //-----------------------------------Admin--------------------------------------------------------------------------------
