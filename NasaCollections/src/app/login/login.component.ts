@@ -25,12 +25,6 @@ export class LoginComponent implements OnInit {
   
   onLoginSubmit(){
     
-   // if(this.email == "ouda.yousef@gmail.com" && this.password == "ok"){
-      // this.flashMessage.show('Signed in as Admin', {
-      //       classes: ['alert', 'alert-success'] });
-      //      this.admin.changeMessage(true);
-            // this.administrator = true;
-   // }
     const user = {
       email: this.email,
       password: this.password,
@@ -44,7 +38,7 @@ export class LoginComponent implements OnInit {
         if(!(res.success)){
           this.flashMessage.show(res.msg, {
             classes: ['alert', 'alert-danger'] });
-          //  this.router.navigate(['/login']);
+
         } 
         
         else if(res.user.__v == 2){

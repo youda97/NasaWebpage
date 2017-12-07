@@ -12,7 +12,7 @@
 
    <input (click) = "showCollection(cb.i)" type="button" [(ngModel)] = "cb.value" class="floated"/> 
 
-   <input *ngIf = "!(cb.email == authService.getTheEmail())" (click) = "upVote(cb.i)" type = "button" [(ngModel)] = "cb.rating"/>
+   <input *ngIf = "!(cb.email == authService.getTheEmail())" (click) = "upVote(cb.i)" type = "button" [(ngModel)] = "cb.rating" class="floated"/>
 
   
   </div>
@@ -35,7 +35,8 @@
    <h2>My Collections</h2>
    
    <div *ngFor = "let cb of myCollectionButton"  class="floated">
-   <input (click) = "showMyCollection(cb.i)" type="button" [(ngModel)] = "cb.value"/>
+  
+   <input (click) = "showMyCollection(cb.i)" type="button" [(ngModel)] = "cb.value" class="floated"/>
    
   </div>
    

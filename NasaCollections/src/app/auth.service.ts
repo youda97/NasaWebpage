@@ -29,8 +29,7 @@ export class AuthService {
         
         return this.http.post('https://youda-lab5-youda97.c9users.io:8081/users/register', user, {headers: headers})
             .map(res => res.json());
-        // return this.http.post('users/register', user, {headers: headers})
-        //     .map(res => res.json());
+
     
     }
     

@@ -99,7 +99,7 @@ module.exports.sendEmail = function(user, verificationTokenData){
     var mailOptions = {
         from: 'Yousef <oudayousef3@gmail.com>',
         to: user.email,
-        subject: 'Nasa PCollections',
+        subject: 'Nasa Webpage',
         html: emailBody
     }
     

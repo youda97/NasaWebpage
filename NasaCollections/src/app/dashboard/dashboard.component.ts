@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     var thing = (this.authService.returnEmail());
     var splitter = thing.split('"email":"');
-    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
+    var userEmail = splitter[1].split('"}') 
     
     //Top ten collections
     this.cService.getTopTen().subscribe(
@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
     //If logged in
     var thing = (this.authService.returnEmail());
     var splitter = thing.split('"email":"');
-    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
+    var userEmail = splitter[1].split('"}')
     
     this.cService.getUserCollections(userEmail[0]).subscribe(
       res => {
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
     this.photos = [];
     var thing = (this.authService.returnEmail());
     var splitter = thing.split('"email":"');
-    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
+    var userEmail = splitter[1].split('"}') 
     console.log(userEmail[0]);
     
     this.cService.getUserCollections(userEmail[0]).subscribe(
@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit {
   }
   
   upVote(n){
-    // var user;
+    
     if(this.collectionButton[n].isClicked == 1){
       
       console.log("asjfhksjdfhjsdhfjksdfhjsdhfj");
@@ -118,14 +118,14 @@ export class DashboardComponent implements OnInit {
       
       this.cService.getTopTen().subscribe(
       res => {
-        // user = res;
+        
         var cn = res.collection[JSON.stringify(n)];
         this.cService.downVote(cn.email, cn._id).subscribe(
           res => {
             if(res.success){
-              console.log(res.cln.rating);
+              
             } else{
-              console.log("FAILUEEEEEEEEEEEEEE");
+              
             }
           });
       });
@@ -138,14 +138,14 @@ export class DashboardComponent implements OnInit {
       
       this.cService.getTopTen().subscribe(
       res => {
-        // user = res;
+        
         var cn = res.collection[JSON.stringify(n)];
         this.cService.upVote(cn.email, cn._id).subscribe(
           res => {
             if(res.success){
-              console.log(res.cln.rating);
+              
             } else{
-              console.log("FAILUEEEEEEEEEEEEEE");
+              
             }
           });
       });
