@@ -1,35 +1,51 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+ 
 <!DOCTYPE html>
 <html>
  <div>
-  <h2>Top 10 Public Collections</h2>
-  <div *ngFor = "let cb of collectionButton">
-   <input (click) = "showCollection(cb.i)" type="button" [(ngModel)] = "cb.value"/> 
-   <input *ngIf = "!(cb.email == authService.getTheEmail())" (click) = "upVote(cb.i)" type = "button" [(ngModel)] = "cb.rating"/>
-   <br/> <br/>
-  </div>
+ <h2>Top 10 Public Collections</h2>
   
+  <div *ngFor = "let cb of collectionButton">
+
+   <input (click) = "showCollection(cb.i)" type="button" [(ngModel)] = "cb.value" class="floated"/> 
+
+   <input *ngIf = "!(cb.email == authService.getTheEmail())" (click) = "upVote(cb.i)" type = "button" [(ngModel)] = "cb.rating"/>
+
+  
+  </div>
+   <br><br>
+    <br><br>
+  <div class="w3-container">
   <li *ngFor = "let photo of publicPhotos"> 
     <a (click) = "removeFromCollection(photo) "><img src = {{photo}} /></a>
     
     <br/>
+     <br><br>
     
  </li>
  </div>
+ </div>
  
- <br><br>
+
  
   <div *ngIf = "authService.loggedIn()">
    <h2>My Collections</h2>
    
-   <div *ngFor = "let cb of myCollectionButton">
+   <div *ngFor = "let cb of myCollectionButton"  class="floated">
    <input (click) = "showMyCollection(cb.i)" type="button" [(ngModel)] = "cb.value"/>
-   <br/> <br/>
+   
   </div>
+   
+   <br/> <br/>
    
   <li *ngFor = "let photo of photos"> 
     <a><img src = {{photo}} /></a>
     <br/>
+    <br/> <br/>
  </li>
  </div>
- 
+
 </html>

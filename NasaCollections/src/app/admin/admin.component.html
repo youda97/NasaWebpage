@@ -2,21 +2,32 @@
     
     <h1>Administrator Settings</h1>
     
-    <br>
     
-    <p class = "lead">Security policy</p>
+<table align="center">
+    <tr>
+        <td >
+ <p class = "lead">Security policy</p>
     <input [(ngModel)] = "security" type="text" class = "form-control" />
+    <br>
     <input type="submit" (click) = "onSaveSecurity()" class = "btn btn-primary" value="Save"/>
-    
-    <br><br>
-    
+
+        </td>
+        <td>
     <p class = "lead">Privacy policy</p>
     <input [(ngModel)] = "privacy" type="text" class = "form-control"/>
+    <br>
     <input type="submit" (click) = "onSavePolicies()" class = "btn btn-primary" value="Save"/>
-    <br><br>
-    
-    <p class = "lead">Enter Takedown DMCA Policy Here</p>
+        </td>
+        <td>
+    <p class = "lead">Takedown DMCA Policy</p>
     <input [(ngModel)] = "DMCA" type="text" class = "form-control"/> 
+    <br>
     <input type="submit" (click) = "onSaveDMCA()" class = "btn btn-primary" value="Save"/>
-
-</div>
+        </td>
+    </tr>
+</table>
+    
+    <br>
+    
+   
+    </div>

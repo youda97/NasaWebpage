@@ -1,7 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<table>
+<table align="center">
 <tr><td>
 <form (submit)="onCollectionSubmit()">
     <div class="form-control" class="w3-container">
@@ -35,7 +35,7 @@
  </table>
  
 
-<div class = "row">
+<div class = "row" align="center">
 <ul>
 
 <li *ngFor = "let photo of photos" class = image-container>
@@ -45,7 +45,7 @@
 <table>
 <tr><td>
     
-    <h2>{{photo.data[0]['title']}}</h2>
+    <h2 align="center">{{photo.data[0]['title']}}</h2>
 <img  (click)="fullClick(photo.links[0]['href'])" src = "{{photo.links[0]['href']}}">
 </td></tr>
 <tr><td>
