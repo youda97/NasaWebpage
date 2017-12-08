@@ -223,12 +223,10 @@ router.post('/collections/upVote', (req,res,next)=>{
 router.post('/collections/downVote', (req,res,next)=>{
 	Collection.findById(req.body.cID, (err, cn) =>{
 	   if(err){
-	       console.log("LLLLLLLLLLLLLLLLLLLLLLLLl");
 	       res.json({
 	           success: false
 	       });
 	   } else if(cn){
-	       console.log("HIIIIIII");
 	       cn.rating--;
 	       cn.save();
 	       res.json({

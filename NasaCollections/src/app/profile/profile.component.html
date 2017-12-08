@@ -7,7 +7,7 @@
     <div class="form-control" class="w3-container">
         <input type="text" [(ngModel)]="searchPhoto" name= "searchPhoto" class = "form-control" placeholder = "Search">
         <br/>
-         <button (click) = search() >Search</button>
+         <button (click) = () >Search</button>
          <br/>
         <p>Title: </p>
         <input type = "text" [(ngModel)]="collectionTitle"  name= "collectionTitle" placeholder="Title" class = "form-control">
@@ -39,7 +39,6 @@
 <ul>
 
 <li *ngFor = "let photo of photos" class = image-container>
-<!--<a (click) = "addToCollection(photo) "><img src = "{{photo.links[0]['href']}}"></a>-->
 
 
 <table>

@@ -12,24 +12,24 @@ import {ValidateService} from '../validate.service'
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-user:any;
-email: String;
-searchPhoto: String;
-collectionTitle: String;
-collectionDescrip: String;
-isPublic: Boolean = false;
-imageList: String;
-count:number;
-
-photos: any [];
-image: any [];
+  user:any;
+  email: String;
+  searchPhoto: String;
+  collectionTitle: String;
+  collectionDescrip: String;
+  isPublic: Boolean = false;
+  imageList: String;
+  count:number;
+  
+  photos: any [];
+  image: any [];
+  
   constructor(private authService: AuthService, 
-  private router: Router, 
-  private nasaApiService: NasaApiService, 
-  private collectionService: CollectionService,  
-  private flashMessagesService: FlashMessagesService,
-  private validateService : ValidateService
-  ) {
+    private router: Router, 
+    private nasaApiService: NasaApiService, 
+    private collectionService: CollectionService,  
+    private flashMessagesService: FlashMessagesService,
+    private validateService : ValidateService) {
     
     this.count=0;
     this.image=[];
@@ -99,9 +99,6 @@ addToCollection(photo){
     this.count++;
 }
 
-fullClick(href){
-  
-}
 
 ngOnInit() {}
 }
